@@ -20,6 +20,7 @@ public class StandardDTOValidator implements DTOValidator {
         violations = null;
         violations = validator.validate(dto).stream().map(violation -> {
             ValidationError error = new ValidationError();
+            error.setField(violation.getPropertyPath().toString());
             error.setMessage(violation.getMessage());
             return error;
         }).collect(Collectors.toList());
